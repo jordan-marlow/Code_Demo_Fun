@@ -14,9 +14,7 @@ def get_weather_information(city:str) -> dict:
     url = f"https://goweather.herokuapp.com/weather/{city}"
     session = requests.Session()
     r = session.get("https://reacttempo.netlify.app/")
-    print(r)
     response = session.get(url)
-    print(response)
     try:
         data = response.json()
     except requests.exceptions.JSONDecodeError:
@@ -84,7 +82,6 @@ def convert_kmh_to_mph(speed:float) -> float:
 def main():
     city = input("Enter a city to get the weather for and press [Enter]:  ")
     data = get_weather_information(city)
-    print(data)
     temp_celsius = parse_temperature(data.get("temperature",""))
     wind_kmh = parse_speed(data.get("wind",""))
     description = data.get("description","")
@@ -92,12 +89,14 @@ def main():
     temp_fahr = convert_C_to_F(temp_celsius)
     wind_mph = convert_kmh_to_mph(wind_kmh)
 
-    print(f"City:\t{city}")
-    print()
+    print("==================================================================")
+    print(f"City:\t{city.title()}")
+    print("")
     print()
     print(f"Description:   {description}")
     print(f"Temperature:   {temp_celsius}°C     {temp_fahr}°F")
     print(f"Wind Speed:    {wind_kmh} km/h   {wind_mph} mph")
+    print("==================================================================")
 
 if __name__ == "__main__":
     main()
