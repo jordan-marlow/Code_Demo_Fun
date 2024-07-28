@@ -23,7 +23,7 @@ def parse_date(month:str,day:str) -> str:
         'July': 7, 'August': 8, 'September': 9,
         'October': 10, 'November': 11, 'December': 12
     }
-    month_number = month_map.get(month,"-1")
+    month_number = month_map.get(month,-1)
     if month_number == -1:
         raise Exception(f"Month {month} is not a valid month.  Try one of the following {list(month_map.keys())}")
     
