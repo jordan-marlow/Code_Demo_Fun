@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go & HTMX Example</title>
+    <script src="/static/htmx.min.js"></script> <!-- Or use a CDN -->
+</head>
+<body>
+    <h1>Credit Card Validation</h1>
+    <form id="card-form" hx-post="/validate" hx-target="#result" hx-swap="innerHTML">
+        <label for="card-number">Enter Card Number:</label>
+        <input type="text" id="card-number" name="card_number">
+        <button type="submit">Validate</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html>

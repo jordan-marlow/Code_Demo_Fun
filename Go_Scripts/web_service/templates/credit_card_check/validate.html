@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go & HTMX Validation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/2.0.2/htmx.min.js" integrity="sha512-iRA+DJgDLUKPk+pqGpAM3+wSDeO5iKQkYXGtIv4+EA8oJWN1mewMJD7kWC9hHCyUTdey9bQypAhx6PASWShjOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Credit Card Validation</h1>
+    <form id="card-form" hx-get="/validate" hx-target="#result" hx-swap="innerHTML">
+        <label for="card-number">Enter Card Number:</label>
+        <input type="text" id="card-number" name="card_number">
+        <button type="submit">Validate</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        // Function to remove the result after 5 seconds
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            if (evt.detail.target.id === 'result') {
+                setTimeout(function() {
+                    document.getElementById('result').innerHTML = '';
+                }, 5000); // Remove the result after 5 seconds
+            }
+        });
+    </script>
+</body>
+</html>
